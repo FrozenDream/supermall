@@ -28,7 +28,7 @@
         :key="recommends"
       ></goods-list>
     </scroll>
-    <detail-bottom-bar></detail-bottom-bar>
+    <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
   </div>
 </template>
@@ -49,8 +49,8 @@ import GoodsList from 'components/content/goods/GoodsList'
 
 import { debounce } from 'common/utils'
 import { backTopMixin } from 'common/mixin'
-
 import { getDetail, Goods, Shop, GoodsParam, getRecommend } from 'network/detail'
+
 
 export default {
   name: 'Detail',
@@ -79,7 +79,9 @@ export default {
       recommends: [],
       themeTopYs: [],
       getThemeTopy: null,
-      currentIndex: 0
+      currentIndex: 0,
+      // message: '',
+      // isShow: false
     }
   },
   created() {
@@ -155,6 +157,28 @@ export default {
     },
     titleClick(index) {
       this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 1000)
+    },
+    addToCart() {
+      // 获取需要在购物车展示的信息
+      const product = {}
+      product.image = this.topImages[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc
+      product.price = this.goods.realPrice
+      product.iid = this.iid
+      // 将商品添加到购物车里面
+      // 传给mutations
+      // this.$store.commit('addCart', product)
+      // 传给action
+      // 将商品添加到购物车后 返回信息.要现在action 使用promise里面完成操作再返回信息
+      // 另一种方式需要 使用 导入mapActions  ...mapActions(['addCart']) 映射actions里面的关系
+      // this.addCart(product).then(res => {
+      //   console.log(res);
+      // })
+      this.$store.dispatch('addCart', product).then(res => {
+
+        console.log(res);
+      })
 
     }
   },

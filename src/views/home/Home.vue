@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"
-      ><template v-slot:center><div>购物街</div></template></nav-bar
+      ><template v-slot:center><h2>购物街</h2></template></nav-bar
     >
     <tab-control
       :titles="['流行', '精选', '新款']"

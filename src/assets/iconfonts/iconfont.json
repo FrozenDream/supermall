@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12879271",
+      "name": "复选-选中",
+      "font_class": "checkbox",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
       "icon_id": "3320281",
       "name": "店铺",
       "font_class": "dianpu",
